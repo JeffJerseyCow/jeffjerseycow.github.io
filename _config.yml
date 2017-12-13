@@ -1,57 +1,34 @@
-title: JeffJerseyCow
+# Jekyll configuration
+
 name: JeffJerseyCow
-email: jeffjerseycow@gmail.com
 description: Vulnerability Researcher
 
-parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
-parallax_image_two: assets/images/startup3.jpg
+# Url is currently only used only for the RSS feed in feed.xml
+url: http://jjc.re
+#url: http://localhost:4000
 
-project_one: "First Project"
-project_one_description: Describe your project!
-project_one_url: https://github.com/jameshamann/jekyll-material-theme
-project_one_icon: location_on
+# For a project page here should be a project name. Otherwise (for user's/organization's page leave it empty)
+baseurl: ''
 
-project_two: Second Project
-project_two_description: Describe your project!
-project_two_url: https://github.com/jameshamann/jekyll-material-theme
-project_two_icon: photo_camera
+social:
+  github: JeffJerseyCow
+  twitter: JeffJerseyCow
 
+# Google Analytics key, leave blank to ignore
+google_analytics_key:
+# Yandex metrica (https://metrica.yandex.com/) leave blank to ignore or put true to use
+yandex_metrica:
 
-project_three: Third Project
-project_three_description: Describe your project!
-project_three_url: https://github.com/jameshamann/jekyll-material-theme
-project_three_icon: hotel
+permalink: /:year/:month/:title
 
+# Enable for using pages, more details are here: http://jekyllrb.com/docs/pagination/
+#paginate: 3
 
-project_four: Fourth Project
-project_four_description: Describe your project!
-project_four_url: https://github.com/jameshamann/jekyll-material-theme
-project_four_icon: restaurant
+#highlighter: rouge
 
-
-project_five: Fifth Project
-project_five_description: Describe your project!
-project_five_url: https://github.com/jameshamann/jekyll-material-theme
-project_five_icon: restaurant
-
-
-project_button: Github
-
-github: https://github.com/JeffJerseyCow
-medium: https://medium.com/@JeffJerseycow
-
-baseurl: "" # if your site is located at /blog or /home, enter it here, otherwise leave it as '/'
-url: "jjc.re" #the url of your site
-
-google_analytics_tracking_id: # This looks something like UA-000000000-0 Head over to https://analytics.google.com/ to setup.
-
-cookies_banner: none # The value "show" will show the cookies banner, the value "none" will hide the banner.
-
-# Build settings
 markdown: kramdown
-# theme: minima
-permalink: pretty
-plugins:
-  - jekyll-feed
-  - jekyll-assets
-  - jekyll-minifier
+kramdown:
+  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
+  hard_wrap: true
+
+exclude: ['README.md', 'LICENSE']

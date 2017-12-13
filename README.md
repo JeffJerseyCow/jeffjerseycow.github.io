@@ -1,112 +1,73 @@
-# Jekyll Material Theme
+Jekyll Clean Dark
+============
 
-A Jekyll Theme based on [Material Design](https://material.io/) using [Materialize](http://materializecss.com/).
+[![Gem Version](https://badge.fury.io/rb/jekyll-clean-dark.svg)](https://badge.fury.io/rb/jekyll-clean-dark)
 
-[![Gem Version](https://badge.fury.io/rb/jekyll-material-theme.svg)](https://badge.fury.io/rb/jekyll-material-theme)
+This theme was created on top of Jekyll Clean theme by Scotte, you can view the original version in action [on his blog](https://scotte.github.io).
 
-<a href="https://imgur.com/3PKshVo"><img src="https://i.imgur.com/3PKshVo.gif" title="source: imgur.com" /></a>
+* Get it from [github](https://github.com/streetturtle/jekyll-clean-dark).
+* See the [live demo](http://pavelmakhov.com/jekyll-clean-dark).
+* See it [in action on my own blog](http://pavelmakhov.com).
+* Easily [customizable](http://pavelmakhov.com/jekyll-clean-dark/2016/09/customizations)
 
-<a href="https://imgur.com/hlB1MOw"><img src="https://i.imgur.com/hlB1MOw.gif" title="source: imgur.com" /></a>
+![preview1](./assets/images/preview1.jpg)
+![preview2](./assets/images/preview2.jpg)
+![preview3](./assets/images/preview3.jpg)
 
-<a href="https://imgur.com/D9DSyuk"><img src="https://i.imgur.com/D9DSyuk.gif" title="source: imgur.com" /></a>
+This theme uses some parts of Twitter Bootstrap, which allows it to look nice on a mobile devices using a collapsable nav bar and hiding the
+sidebar.
 
-##### Cookie Policy
+Optionally you can use:
 
-If you use cookies on your site, or choose to use Google Analytics, you're able to notify visitors with this prompt. The ```Thanks!``` dialog message can be customised in your ```_config.yml``` file.
+ - [Disqus](http://disqus.com) as a comments system;
+ - [Google Analytics](http://www.google.com/analytics/);
+ - [Yandex Metrica](http://metrica.yandex.com);
+ - Blog tags - check the section below;
+ - Share buttons.
 
-<a href="https://imgur.com/O7sICnY"><img src="https://i.imgur.com/O7sICnY.gif" title="source: imgur.com" /></a>
+All these features could be set up in `_config.yml`. Also you can have social icons which could lead to your social profiles. It uses [font-awesome](http://fontawesome.io/), so you can have any icon you want to any social profile. Out-of-the box it has: LinkedIn, GitHub, StackOverflow, LastFm, Instagram. And you can easily add more by adding new style in `theme.css` and setting it in `_config.yml`.
 
-### [Live Demo](https://jameshamann.com)
+Installation
+============
 
-## Installation
+If you dont't have your own blog you can clone this repository and put your articles in a `_posts` folder.
+If you already have your own blog then I think you can clone this repository and copy-paste content keeping your `_posts` folder.
 
-Add this line to your Jekyll site's `Gemfile`:
+After you will have to set up your `_config.yml`
 
-```ruby
-gem "material-theme"
-```
+Gem Installation
+================
 
-And add this line to your Jekyll site's `_config.yml`:
+Follow the instructions on the Jekyll [site](https://jekyllrb.com/docs/themes/). Then copy the following files from this repository:
 
-```yaml
-theme: material-theme
-```
+ -_config.yml
+ - about.md
+ - admin.md
+ - archive.html
+ - feed.xml 
+ 
+Blog tags
+=========
 
-And then execute:
+To use this feature you simply will need to create a markdown file for each tag which you are using in you site in **tag** folder. To simplify this procedure there is an [/admin](http://pavelmakhov.com/jekyll-clean-dark/admin.html) page, which outputs the bash command which you just need to run inside **tag** folder of your site. Also don't forget to rerun it when you add a post with new tag.
 
-    $ bundle
+License
+=======
 
-Or install it yourself as:
+The content of this theme is distributed and licensed under a
+[Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode)
 
-    $ gem install material-theme
+    This license lets others distribute, remix, tweak, and build upon your work,
+    even commercially, as long as they credit you for the original creation. This
+    is the most accommodating of licenses offered. Recommended for maximum
+    dissemination and use of licensed materials.
 
-## Usage
+In other words: you can do anything you want with this theme on any site, just please
+provide a link to the original theme on github.
 
-The ```_config.yml``` file has the following options.
+This theme includes the following files which are the properties of their
+respective owners:
 
-```yaml
-title: Your awesome title
-name: Your Name
-email: your-email@example.com
-description: Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-
-parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
-parallax_image_two: assets/images/startup3.jpg
-
-project_one: "First Project"
-project_one_description: Describe your project!
-project_one_url: https://github.com/jameshamann/jekyll-material-theme
-project_one_icon: location_on # these are from materiailize css, the full collection is here: http://materializecss.com/icons.html
-
-project_two: Second Project
-project_two_description: Describe your project!
-project_two_url: https://github.com/jameshamann/jekyll-material-theme
-project_two_icon: photo_camera
-
-
-project_three: Third Project
-project_three_description: Describe your project!
-project_three_url: https://github.com/jameshamann/jekyll-material-theme
-project_three_icon: hotel
-
-
-project_four: Fourth Project
-project_four_description: Describe your project!
-project_four_url: https://github.com/jameshamann/jekyll-material-theme
-project_four_icon: restaurant
-
-
-project_button: Github
-
-github: https://github.com/jameshamann/jekyll-material-theme
-medium: https://medium.com
-
-baseurl: / # If your site is located at /blog or /home, change it here
-url: http://localhost:4000/ # The URL of your site
-
-google_analytics_tracking_id: # This looks something like UA-000000000-0 Head over to https://analytics.google.com/ to setup.
-
-cookie_accept_message: Thanks! # The pop-up dialog that appears after accepting the cookie notice.
-
-
-# Build settings
-markdown: kramdown
-permalink: pretty
-plugins:
-  - jekyll-feed
-  - jekyll-assets
-  - jekyll-minifier
-
-```
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/jameshamann/jekyll-material-theme. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Development
-
-To set up your environment to develop and further customise this theme, fork the repo and explore the ```_assets``` directory, which includes all the ```css, js``` and ```font``` folders.
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+* js/bootstrap.min.js - [bootstrap](http://getbootstrap.com)
+* css/bootstrap.min.css - [bootstrap](http://getbootstrap.com)
+* js/jquery.min.js - [jquery](https://jquery.com)

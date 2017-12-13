@@ -1,24 +1,45 @@
----
-layout: default
----
-  <div class="container">
-    <div class="col s10">
-    <div class="row" style="padding:10px;">
-      <a class="waves-effect waves-light btn white-text darken-2 grey z-depth-4" href="/#blog"><i class="material-icons">arrow_back</i></a>
+{% include header.html %}
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="article">
+                <div class="well">
+                  <h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar"></i>
+                      <time>{{ page.date | date_to_string }}</time>
+                    </div>
+                    <ul>
+                      {% for tag in page.tags %}
+                        <li><a href="{{ '/tag/' | append: tag | relative_url }}">{{ tag }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    <div id="toc" class="toc"></div>
+                    {{ content }}
+                    {% include share.html %}
+                  </div>
+                  {% if page.comments %}
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 hidden-xs">
+              {% include sidebar.html %}
+            </div>
+          </div>
+        </div>
+        {% include disqus-comments.html %}
+      </div>
+      {% include footer.html %}
     </div>
-    <h3 class="post-title" itemprop="name headline" style="text-align:center">{{ page.title | escape }}</h3>
-
-    <p class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        {{ page.date | date: date_format }}
-      </time>
-      {% if page.author %}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
-      {% endif %}</p>
-
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-</div>
-</div>
+  </body>
+</html>
