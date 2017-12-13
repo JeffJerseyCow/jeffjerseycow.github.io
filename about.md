@@ -4,7 +4,7 @@ title: About
 
 ---
 # About
-I'm a vulnerability researcher that specialises in exploiting telecommunications systems, IoT equipment and embedded devices. However owing to the sensitive nature of my work I've created this website to track my personal projects.
+I'm a vulnerability researcher that specialises in exploiting telecommunications systems, IoT equipment and embedded devices. However, owing to the sensitive nature of my work I've created this website to track my personal projects.
 
 # Research
 Someone wise once said --- never half-ass two things, whole-ass one thing. I take this to heart so focus my time on working within the arena of dynamic analysis. For anyone unsure of what I'm on about, it involves analysing binaries when they are running in memory --- emulated or otherwise. 
