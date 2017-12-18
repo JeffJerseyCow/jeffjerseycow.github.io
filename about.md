@@ -11,9 +11,8 @@ Someone wise once said --- never half-ass two things, whole-ass one thing. I tak
 
 Some techologies I like to play with are:
 
-* z3
-* CBMC, Manticore, Angr, KLEE
-* Intel PIN, DynamoRIO, Frida
+* z3, CBMC, Manticore, Angr, KLEE
+* Intel PIN, DynamoRIO, Frida, Panda
 * AFL, libFuzzer, DrMemory, DrFuzz
 
 # Projects
