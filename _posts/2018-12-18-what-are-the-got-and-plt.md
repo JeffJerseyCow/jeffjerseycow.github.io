@@ -2,7 +2,7 @@
 layout: post
 title: "What are the GOT and PLT? — Part 1"
 date: 2017-12-18
-description: What exactly are the GOT and PLT? They are an intuitive solution to a diffcult problem that is seldom explained in an understandable way — until now.
+description: What exactly are the GOT and PLT? They are an intuitive solution to a difficult problem that is seldom explained in an understandable way — until now.
 share: true
 tags: 
     plt
@@ -25,12 +25,14 @@ When I first learned to exploit computer systems --- specifically Linux computer
 
 I knew that with a write-what-where vulnerability I could overwrite GOT entries to gain code execution. I also knew that it was some how linked to functions being called from external libraries, yet it took the writing of a binary patching framework for me to become fully acquainted with their purpose.
 
-## Ground Rules
-So this post won't discuss how the GOT and PLT actually work, instead it details a fundamental principle that code must always adhere to. That's not to say it's impossible for computer systems to work without this principle --- it's just a really bad idea. 
-
-Much like eating garden mushrooms because you're hungry. It may not go wrong for you, but if you eat garden mushrooms when you're hungry, you're going to have a bad time.
+This post won't discuss the GOT or PLT, neither shall it discuss their purpose. It instead details a fundamental principle of memory that must be understood  to fully grasp their purpose.
 
 If you find this post basic, boring or something else equally depressing. Then just go on ahead and skip to the next post in the series.
+
+# R^X Principle
+The R^X principles states that memory can be writeable or executable, never both. This prevents people and processes from accidentally or intentionally executing data. Therefore any area of memory that isn't marked as executable --- such as the stack --- can never be interpreted as instructions and is limited as an attack vector. 
+
+Its a fairly easy concept to understand right? But why care? Turns out this inherit protection causes problems at run time as sometimes code requires updating, like when loading shared libraries. 
 
 # ELF Files
 For those of you that don't know anything about binaries, specifically those found on Linux. ELF is the format that governs how you take an arbitrary file, put it somewhere in memory and execute it like code. 
@@ -80,17 +82,11 @@ Lets begin by having a closer look at the PHT by issuing the command **"readelf 
 
 You may also note that on your screen there's a list of what sections are mapped to each segment --- segments being contiguous blocks of memory described by a single PHT entry. Together they're just a list of memory allocations the operating system should make when loading the process.
 
-This is an excellent place to introduce the concept of memory only ever being writeable or executable and never writeable and executable at the same time. This stops people and processes from accidentally or intentionally executing data as instructions. 
-
-The most relevant place this occurs is on the stack, in fact the aforementioned output shows the GNU_STACK allocation as being marked readable and writeable, not executable --- DEP being the hardware enforcement of this policy. Any segment that isn't marked executable can never be executed because if it can be, and an attacker is able to control the program counter --- then it's game over. Just write a shellcode to the stack and redirect execution flow accordingly.  
-
-Its a fairly easy concept to understand right? Lets follow through by replicating how our operating system loader might make these allocations.
-
 If you refer to the PHT dump above there are two segments marked as load types, the first has executable permission and the second has writeable permission. 
 
 The first one tells us that at the at the beginning of the offset --- currently 0x0 --- map some executable memory that's at least 0xbc0 bytes large and aligned on a boundary of 0x200000. The second load entry asks for this to begin at 0x2000dd8, be made writeable and must be at least 0x270 bytes large.
 
-Programatically the opertaing system loader must perform the following actions.
+Pragmatically the operating system loader must perform the following actions.
 
 * Ask the operating system for adequate memory space and return the base address.
 * The operating system gives us the base address 0x08400000.

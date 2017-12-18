@@ -2,7 +2,7 @@
 .bundle
 .sass-cache
 Gemfile.lock
-_site
+_site/
 _posts/2015-11-01-installation.md
 _posts/2016-07-01-images.md
 _posts/2016-08-01-analytics-tags-comments.md
