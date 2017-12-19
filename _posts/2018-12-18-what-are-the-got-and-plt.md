@@ -25,14 +25,14 @@ When I first learned to exploit computer systems --- specifically Linux computer
 
 I knew that with a write-what-where vulnerability I could overwrite GOT entries to gain code execution. I also knew that it was some how linked to functions being called from external libraries, yet it took the writing of a binary patching framework for me to become fully acquainted with their purpose.
 
-This post won't discuss the GOT or PLT, neither shall it discuss their purpose. It instead details a fundamental principle of memory that must be understood  to fully grasp their purpose.
+This post won't directly discuss the GOT or PLT, neither shall it discuss their purpose. It instead details a fundamental principle of memory that must be understood  to fully grasp their purpose.
 
-If you find this post basic, boring or something else equally depressing. Then just go on ahead and skip to the next post in the series.
+If you find this post basic, boring or something else equally depressing, then just go on ahead and skip to the next post in the series.
 
 # R^X Principle
 The R^X principles states that memory can be writeable or executable, never both. This prevents people and processes from accidentally or intentionally executing data. Therefore any area of memory that isn't marked as executable --- such as the stack --- can never be interpreted as instructions and is limited as an attack vector. 
 
-Its a fairly easy concept to understand right? But why care? Turns out this inherit protection causes problems at run time as sometimes code requires updating, like when loading shared libraries. 
+Its a fairly easy concept to understand right, but why care? It turns out this inherit protection causes problems at run time as sometimes the code itself requires updating, primarily when loading shared libraries. 
 
 # ELF Files
 For those of you that don't know anything about binaries, specifically those found on Linux. ELF is the format that governs how you take an arbitrary file, put it somewhere in memory and execute it like code. 
@@ -65,7 +65,7 @@ It also contains the entry point --- this is the address of the first instructio
 
 ![ELF Header]({{ '/assets/images/elf_header.png' | relative_url }}){: .center-image }
 
-The entry point address for test000 is listed as an offset from a base. On disk this base is the beginning of the file and in memory its whatever address the operating system loaded the process at. The diagrams below visualises this concept as it's crucial in understanding the following sections.
+The entry point address for test000 is listed as an offset from a base. On disk this base is the beginning of the file and in memory its whatever address the operating system loaded the process at --- the diagrams below visualise these concepts.
 
 ![ELF Entry Point File]({{ '/assets/images/elf_entry_file_offset.png' | relative_url }}){: .center-image }
 
@@ -103,17 +103,15 @@ Pragmatically the operating system loader must perform the following actions.
 ### Sections and SHT
 At this point we have a bunch of memory blocks --- segments --- ready for the physical file. Now it's up to the loader to do the rest by placing the file sections at the appropriate addresses accoring to their header contents. 
 
-Depending on which segment a section is mapped into dictates whether or not it is read only, readable and writeable or readable and executable. We can view the section header table and their mappings using the command **"readelf -S test000"**.
+Depending on which segment a section is mapped into dictates whether or not it is read only, readable and writeable or readable and executable. We can view the section header table and its entries using the command **"readelf -S test000"**.
 
 ![ELF Sections]({{ '/assets/images/elf_section_header.png' | relative_url }}){: .center-image }
 
-The SHT bears some familiarity to the PHT by containing information such as where sections are to be loaded and their overall size. Now lets run through the next stage of the loaders process by manually mapping these sections into the appropriate memory segment. 
+The SHT bears some familiarity to the PHT as it contains data such as address offsets, sizes and alignment information. Lets run through the next stage of the loading process by manually mapping these sections into their respective memory segments. 
 
 ![ELF Section Loads]({{ '/assets/images/elf_section_loads.png' | relative_url }}){: .center-image }
 
-The most important take away here is that sections containing code are copied into the readable and executable segment, where as the sections containing non-read only data are copied into the readable and writeable segment. This means while the process is running we cannot write to the .text or .plt, but we can write to the .got.
-
-Ever wondered why we don't overwrite the .text section with shellcode opting instead to use the stack? Well, that's because the process doesn't have write permission for the segments they've been loaded into. It's a similar reason we use the GOT in exploiting write-what-where vulnerabilities.
+The most important take away is that sections containing code are copied into the readable and executable segment, where as sections containing non-read only data are copied into the readable and writeable segment. This means while the process is running we cannot write to the .text or .plt, but we can write to the .got.
 
 ## Conclusion
 As we've covered the basics of how ELF files are mapped into memory we can start looking at how we resolve libraries at load time. This is where the GOT and PLT come into their own --- they help in the resolution of libraries without breaking the never writeable and executable principle.
