@@ -114,7 +114,7 @@ The SHT bears some familiarity to the PHT as it contains data such as address of
 The most important take away is that sections containing code are copied into the readable and executable segment, where as sections containing non-read only data are copied into the readable and writeable segment. This means while the process is running we cannot write to the .text or .plt, but we can write to the .got.
 
 ## Conclusion
-As we've covered the basics of how ELF files are mapped into memory we can start looking at how we resolve libraries at load time. This is where the GOT and PLT come into their own --- they help in the resolution of libraries without breaking the never writeable and executable principle.
+As we've covered the basics of how ELF files are mapped into memory we can start looking at how we resolve libraries at load time. This is where the GOT and PLT come into their own --- they help in the resolution of libraries without breaking the R^X principle.
 
 If you have any additional questions or would like to organise a fight please hit me up on Twitter [@JeffJerseyCow](https://twitter.com/@JeffJerseyCow).
 
