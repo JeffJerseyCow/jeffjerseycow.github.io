@@ -101,7 +101,7 @@ Pragmatically the operating system loader must perform the following actions.
 * Repeat until all PHT entries have been mapped into virtual memory.
 
 ### Sections and SHT
-At this point we have a bunch of memory blocks --- segments --- ready for the physical file. Now it's up to the loader to do the rest by placing the file sections at the appropriate addresses accoring to their header contents. 
+At this point we have a bunch of memory blocks --- segments --- ready to recieve the file contents. Now it's up to the loader to do the rest by reading the SHT entries and placing their file sections at the appropriate addresses. 
 
 Depending on which segment a section is mapped into dictates whether or not it is read only, readable and writeable or readable and executable. We can view the section header table and its entries using the command **"readelf -S test000"**.
 
